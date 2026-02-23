@@ -1,8 +1,8 @@
-﻿[app]
+[app]
 title = Elixir Geo Analyzer
 package.name = elixirgeo
 package.domain = org.elixir
-source.dir = src
+source.dir = .
 source.include_exts = py,png,jpg,kv,atlas
 version = 1.0.0
 requirements = python3,kivy==2.3.0
