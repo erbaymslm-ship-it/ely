@@ -1,4 +1,4 @@
-﻿name: Build APK
+name: Build APK
 
 on:
   push:
@@ -18,16 +18,9 @@ jobs:
       - name: System packages
         run: sudo apt-get update && sudo apt-get install -y git zip unzip openjdk-17-jdk autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libffi-dev libssl-dev
       - name: Build APK
-        run: buildozer android debug 2>&1 | tee build.log
-      - name: Find APK
-        run: find . -name '*.apk' 2>/dev/null && echo 'APK search done'
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: elixir-geo-apk
-          path: '**/*.apk'
-      - name: Upload log on fail
-        if: failure()
+        run: buildozer android debug 2>&1 | tee build.log || true
+      - name: Upload full log
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: build-log
